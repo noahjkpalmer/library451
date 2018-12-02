@@ -1,25 +1,101 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Library 451 Database</title>
-	</head>
-	<body>
-		<center>
-			<h3>Library 451</h3>
-			<hr>
+    <head>
+        <title>Library 451</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div>
+            <!-- Header -->
+            <div>
+                <center>
+                    <h1>Library 451</h1>
+                </center>
+            </div>
 
-			<div>
-				<form action="main.php" method="POST">
-					<button id="search_option"></button>
-					<input type="text" name="search_value" id="search_value">
-					<button type="submit" value="submit"></button>
-				</form>
-			</div>
-			<hr>
-			
-		</center>
-	</body>
-	<footer>
-		
-	</footer>
+            <!-- Break Line -->
+            <hr>
+
+            <!-- Search by Title, Author, or Genre to get book Stocks and Locations -->
+            <div>
+                <center>
+                    <h3>Search for Books</h3>
+                </center>
+                <div class="content">
+                    <form action="pages/_1.php" method="POST">
+                        <select name="t_a_g" id="t_a_g" class="chooser">
+                            <option selected="selected">Title</option>
+                            <option>Author</option>
+                            <option>Genre</option>
+                        </select>
+                        <input class="inputbar" type="text" name="search_value" placeholder="Title/Author/Genre">
+                        <button type="submit" value="submit" class="search">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Break Line -->
+            <br><hr>
+
+            <!-- Search by Location to get Stock information at a specified Location -->
+            <div>
+                <center>
+                    <h3>Search for Stock Information</h3>
+                </center>
+                <div class="content">
+                    <form action="pages/_2.php" method="POST">
+                        <button id="search_option_2" class="chooser" disabled>Location</button>
+                        <input  class="inputbar" type="text" name="search_value" placeholder="Location">
+                        <button type="submit" value="submit" class="search">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Break Line -->
+            <br><hr>
+
+            <!-- Search by Customer's ID to get Late Fees or Checked Out Books -->
+            <div>
+                <center>
+                    <h3>Search for Late Fees or Checked Out Books</h3>
+                </center>
+                <div class="content">
+                    <form action="pages/_3.php" method="POST">
+                        <select name="lf_cob" id="lf_cob" class="chooser">
+                            <option selected="selected">Late Fees</option>
+                            <option>Checked Out Books</option>
+                        </select>
+                        <input class="inputbar" type="text" name="search_value" placeholder="Customer ID">
+                        <button type="submit" value="submit" class="search">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Break Line -->
+            <br><hr>
+
+            <!-- Search by Employee's ID to get Reservations made by that Employee -->
+            <div>
+                <center>
+                    <h3>Search for Reservations made by an Employee</h3>
+                </center>
+                <div class="content">
+                    <form action="pages_4.php" method="POST">
+                        <button id="search_option_4" class="chooser" disabled>Employee ID</button>
+                        <input class="inputbar" type="text" name="search_value" placeholder="EmployeeID">
+                        <button type="submit" value="submit" class="search">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Break Line -->
+            <br><hr>
+
+        </div>
+    </body>
+    <footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </footer>
 </html>

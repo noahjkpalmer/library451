@@ -1,0 +1,35 @@
+body{
+	background-color: lightyellow;
+	font-family: "arial";
+}
+
+.content{
+	left: 20px;
+	position: relative;
+	margin: auto;
+	max-width: 600px;
+}
+
+.chooser{
+	background-color: lightgreen;
+	border-radius: 5px;
+	padding: 10px;
+	border-color: transparent;
+	font-size: 15px;
+	width: 175px;
+	color: black;
+	text-align: left;
+}
+
+.inputbar{
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.search{
+	border-radius: 5px;
+	padding: 10px;
+	background-color: lightgreen;
+	border-color: lightyellow;
+	font-size: 15px;
+}
