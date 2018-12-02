@@ -33,6 +33,7 @@
                     }else{
                         $query = "yourquery";
                     }
+                    print $_POST["t_a_g"];
                 ?>
 
                 <!-- Print the Query -->
