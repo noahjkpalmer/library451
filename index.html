@@ -20,18 +20,18 @@
             <div>
                 <center>
                     <h3>Search for Books</h3>
+                    <div>
+                        <form action="pages/_1.php" method="POST">
+                            <select name="t_a_g" id="t_a_g" class="chooser">
+                                <option selected="selected">Title</option>
+                                <option>Author</option>
+                                <option>Genre</option>
+                            </select>
+                            <input class="inputbar" type="text" name="search_value" placeholder="Title/Author/Genre">
+                            <button type="submit" value="submit" class="search">Search</button>
+                        </form>
+                    </div>
                 </center>
-                <div class="content">
-                    <form action="pages/_1.php" method="POST">
-                        <select name="t_a_g" id="t_a_g" class="chooser">
-                            <option selected="selected">Title</option>
-                            <option>Author</option>
-                            <option>Genre</option>
-                        </select>
-                        <input class="inputbar" type="text" name="search_value" placeholder="Title/Author/Genre">
-                        <button type="submit" value="submit" class="search">Search</button>
-                    </form>
-                </div>
             </div>
 
             <!-- Break Line -->
@@ -41,14 +41,14 @@
             <div>
                 <center>
                     <h3>Search for Stock Information</h3>
+                    <div>
+                        <form action="pages/_2.php" method="POST">
+                            <button id="search_option_2" class="chooser" disabled>Location</button>
+                            <input  class="inputbar" type="text" name="search_value" placeholder="Location">
+                            <button type="submit" value="submit" class="search">Search</button>
+                        </form>
+                    </div>
                 </center>
-                <div class="content">
-                    <form action="pages/_2.php" method="POST">
-                        <button id="search_option_2" class="chooser" disabled>Location</button>
-                        <input  class="inputbar" type="text" name="search_value" placeholder="Location">
-                        <button type="submit" value="submit" class="search">Search</button>
-                    </form>
-                </div>
             </div>
 
             <!-- Break Line -->
@@ -58,17 +58,17 @@
             <div>
                 <center>
                     <h3>Search for Late Fees or Checked Out Books</h3>
+                    <div>
+                        <form action="pages/_3.php" method="POST">
+                            <select name="lf_cob" id="lf_cob" class="chooser">
+                                <option selected="selected">Late Fees</option>
+                                <option>Checked Out Books</option>
+                            </select>
+                            <input class="inputbar" type="text" name="search_value" placeholder="Customer ID">
+                            <button type="submit" value="submit" class="search">Search</button>
+                        </form>
+                    </div>
                 </center>
-                <div class="content">
-                    <form action="pages/_3.php" method="POST">
-                        <select name="lf_cob" id="lf_cob" class="chooser">
-                            <option selected="selected">Late Fees</option>
-                            <option>Checked Out Books</option>
-                        </select>
-                        <input class="inputbar" type="text" name="search_value" placeholder="Customer ID">
-                        <button type="submit" value="submit" class="search">Search</button>
-                    </form>
-                </div>
             </div>
 
             <!-- Break Line -->
@@ -78,14 +78,14 @@
             <div>
                 <center>
                     <h3>Search for Reservations made by an Employee</h3>
+                    <div>
+                        <form action="pages/_4.php" method="POST">
+                            <button id="search_option_4" class="chooser" disabled>Employee ID</button>
+                            <input class="inputbar" type="text" name="search_value" placeholder="EmployeeID">
+                            <button type="submit" value="submit" class="search">Search</button>
+                        </form>
+                    </div>
                 </center>
-                <div class="content">
-                    <form action="pages_4.php" method="POST">
-                        <button id="search_option_4" class="chooser" disabled>Employee ID</button>
-                        <input class="inputbar" type="text" name="search_value" placeholder="EmployeeID">
-                        <button type="submit" value="submit" class="search">Search</button>
-                    </form>
-                </div>
             </div>
 
             <!-- Break Line -->
