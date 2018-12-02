@@ -25,15 +25,14 @@
                 <?php
                     $formnumber = $_POST["form_number"];
                     if($formnumber == 1){
-                        $query = "thequery";
+                        $query =  $_POST["search_option"];
                     }elseif($formnumber == 2){
-                        $query = "aquery";
+                        $query = "Location";
                     }elseif($formnumber == 3){
-                        $query = "myquery";
+                        $query = $_POST["search_option"];
                     }else{
-                        $query = "yourquery";
+                        $query = "Employee ID";
                     }
-                    print $_POST["t_a_g"];
                 ?>
 
                 <!-- Print the Query -->

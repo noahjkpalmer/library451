@@ -22,7 +22,7 @@
                     <h3>Search for Books</h3>
                     <div id="form_1">
                         <form action="main.php" method="POST" class="form">
-                            <select name="t_a_g" id="t_a_g" class="chooser">
+                            <select name="search_option" id="t_a_g" class="chooser">
                                 <option selected="selected">Title</option>
                                 <option>Author</option>
                                 <option>Genre</option>
@@ -44,7 +44,7 @@
                     <h3>Search for Stock Information</h3>
                     <div id="form_2">
                         <form action="main.php" method="POST" class="form">
-                            <button id="search_option_2" class="chooser" disabled>Location</button>
+                            <button class="chooser" disabled>Location</button>
                             <input  class="inputbar" type="text" name="search_value" placeholder="Location" required>
                             <input type="hidden" name="form_number" value="2">
                             <button type="submit" value="submit" class="search" id="s2">Search</button>
@@ -62,7 +62,7 @@
                     <h3>Search for Late Fees or Checked Out Books</h3>
                     <div id="form_3">
                         <form action="main.php" method="POST" class="form">
-                            <select name="lf_cob" id="lf_cob" class="chooser">
+                            <select name="search_option" id="lf_cob" class="chooser">
                                 <option selected="selected">Late Fees</option>
                                 <option>Checked Out Books</option>
                             </select>
@@ -83,7 +83,7 @@
                     <h3>Search for Reservations made by an Employee</h3>
                     <div id="form_4">
                         <form action="main.php" method="POST" class="form">
-                            <button id="search_option_4" class="chooser" disabled>Employee ID</button>
+                            <button class="chooser" disabled>Employee ID</button>
                             <input class="inputbar" type="text" name="search_value" placeholder="EmployeeID" required>
                             <input type="hidden" name="form_number" value="4">
                             <button type="submit" value="submit" class="search" id="s4">Search</button>
