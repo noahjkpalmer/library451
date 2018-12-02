@@ -1,12 +1,12 @@
 <?php
-    include('../connectionData.txt');
+    include('connectionData.txt');
     $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
 ?>
 
 <html>
     <head>
         <title>Library 451</title>
-        <link rel="stylesheet" href="../main.css">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
         <div>
@@ -23,7 +23,16 @@
             <div id="query">
                 <!-- Build Query -->
                 <?php
-                    $query = "yourquery";
+                    $formnumber = $_POST["form_number"];
+                    if($formnumber == 1){
+                        $query = "thequery";
+                    }elseif($formnumber == 2){
+                        $query = "aquery";
+                    }elseif($formnumber == 3){
+                        $query = "myquery";
+                    }else{
+                        $query = "yourquery";
+                    }
                 ?>
 
                 <!-- Print the Query -->
@@ -35,7 +44,7 @@
                         print $query;
                     ?>
                 </center>
-
+                
                 <!-- Break Line -->
                 <br><hr>
 
@@ -47,9 +56,17 @@
 
                 <!-- Display Results -->
                 <center>
-                    <p>
-                        HERE IS THE DATA
-                    </p>
+                    <?php
+                        if($formnumber == 1){
+                            print "HERE IS DATA 1";
+                        }elseif($formnumber == 2){
+                            print "HERE IS DATA 2";
+                        }elseif($formnumber == 3){
+                            print "HERE IS DATA 3";
+                        }else{
+                            print "HERE IS DATA 4";
+                        }
+                    ?>
                 </center>
 
                 <!-- Clean Up -->
@@ -58,6 +75,7 @@
                     // mysqli_close($conn);
                 ?>
             </div>
+
 
             <!-- Break Line -->
             <hr>
@@ -73,7 +91,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript">
             $(".return").click(function(){
-                window.location.href = "../index.html";
+                window.location.href = "index.html";
             });
         </script>
     </footer>
