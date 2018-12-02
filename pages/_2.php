@@ -1,7 +1,6 @@
 <?php
     include('../connectionData.txt');
-    $conn = mysqli_connect($server, $user, $pass, $dbname, $port)
-    or die('Error connecting to MySQL server.');
+    $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
 ?>
 
 <html>
@@ -21,7 +20,44 @@
             <!-- Break Line -->
             <hr>
 
-             <!-- DISPLAY INFORMATION HERE -->
+            <div id="query">
+                <!-- Build Query -->
+                <?php
+                    $query = "myquery";
+                ?>
+
+                <!-- Print the Query -->
+                <center>
+                    <p>
+                        The Query:
+                    </p>
+                    <?php
+                        print $query;
+                    ?>
+                </center>
+
+                <!-- Break Line -->
+                <br><hr>
+
+                <!-- Run Query -->
+
+                <?php
+                    // $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                ?>
+
+                <!-- Display Results -->
+                <center>
+                    <p>
+                        HERE IS THE DATA
+                    </p>
+                </center>
+
+                <!-- Clean Up -->
+                <?php
+                    // mysqli_free_result($result);
+                    // mysqli_close($conn);
+                ?>
+            </div>
 
             <!-- Break Line -->
             <hr>
