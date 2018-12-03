@@ -78,8 +78,22 @@
                         $query = $query." ORDER BY name DESC;";
                     }elseif($formnumber == 3){
                         $searchoption = $_POST["search_option"];
+                        if($searchoption == "Late Fees"){
+                            $thisdate = getdate(date("U"));
+                            $currDate = $thisdate[year]."-".$thisdate[mon]."-".$thisdate[mday];
+
+                            $query = "SELECT DISTINCT DATEDIFF('".$currDate."', due_date) as days_late, (DATEDIFF('".$currDate."', due_date)*.25) as fee_due  FROM  Customer";
+                            $query = $query." JOIN Reservation USING (customer_id)";
+                            $query = $query." WHERE customer_id = ".$searchvalue." AND return_date IS NULL";
+                            $query = $query." AND '".$currDate."' > due_date;";
+                        }elseif($searchoption == "Checked Out Books"){
+
+                        }
+
                     }else{
-                        $query = "Employee ID";
+                        $query = "SELECT DISTINCT *  FROM  Employee";
+                        $query = $query." JOIN Reservation USING (employee_id)";
+                        $query = $query." WHERE employee_id = ".$searchvalue.";";
                     }
                 ?>
 
@@ -110,8 +124,7 @@
                         $counter = 0;
 
                         if($formnumber == 1){
-                            print "<div class='grid-container'>";
-                            print "\n<div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Author Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Copies Available</div>";
+                            print "<div class='grid-container'>\n<div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Author Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Copies Available</div>";
                             
                             print "</div><div class='list-bar'><hr></div><div class='grid-container'>";
                             
@@ -133,8 +146,7 @@
                                 }
                             }
                         }elseif($formnumber == 2){
-                            print "<div class='grid-container'>";
-                            print "\n<div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Author Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Copies Available</div>";
+                            print "<div class='grid-container'>\n<div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Author Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Copies Available</div>";
                             
                             print "</div><div class='list-bar'><hr></div><div class='grid-container'>";
                             
@@ -143,8 +155,32 @@
                                 print "\n<div class='grid-item'>$row[title]</div> <div class='grid-item'>$row[author_name]</div> <div class='grid-item'>$row[name]</div> <div class='grid-item'>$row[copies]</div>";
                             }
                             print "</div>";
+                            if($counter == 0){
+                                print "We don't have a library in our database under that name";
+                            }
                         }elseif($formnumber == 3){
-                            print "HERE IS DATA 3";
+                            if($searchoption == "Late Fees"){
+                                print "<div class='grid-container2'>\n<div class='grid-item list-head'>Days Late</div> <div class='grid-item list-head'>Fee Due</div>";
+                                
+                                print "</div><div class='list-bar'><hr></div><div class='grid-container2'>";
+                                
+                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                    $counter++;
+                                    if($row[days_late] <= 0){
+                                        print "\n<div class='grid-item'>0</div> <div class='grid-item'>\$0</div>";
+                                    }else{
+                                        print "\n<div class='grid-item'>$row[days_late]</div> <div class='grid-item'>\$$row[fee_due]</div>";
+                                    }
+                                }
+                                print "</div>";
+                                if($counter == 0){
+                                    print "We don't have you in our database!";
+                                }
+                            }elseif($searchoption == "Checked Out Books"){
+                                print "Checked Out Books";
+                            }else{
+                                print "Error";
+                            }
                         }else{
                             print "HERE IS DATA 4";
                         }

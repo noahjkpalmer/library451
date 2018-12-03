@@ -10,6 +10,12 @@ body{
   padding: 0px 100px;
 }
 
+.grid-container2 {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 0px 400px;
+}
+
 /*https://www.w3schools.com/css/tryit.asp?filename=trycss_grid*/
 .grid-item {
   padding: 20px;
@@ -24,7 +30,7 @@ body{
 }
 
 .list-bar{
-	max-width: 200px;
+	max-width: 300px;
 }
 
 .content{
