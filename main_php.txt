@@ -45,10 +45,23 @@
                             $query = $query." ORDER BY name DESC;";
                         }elseif($searchoption == "Author"){
                             #building query given the search option is "Author"
-                            $query = "Author";
+                            $query = "SELECT DISTINCT title, CONCAT(fname, ' ', lname) as author_name, name, copies  FROM  Book";
+                            $query = $query." JOIN Author USING (author_id)";
+                            $query = $query." JOIN Stock USING (book_id)";
+                            $query = $query." JOIN Library USING (library_id)";
+                            $query = $query." JOIN Address USING (address_id)";
+                            $query = $query." WHERE CONCAT(fname, ' ', lname) LIKE '%".$searchvalue."%'";
+                            $query = $query." ORDER BY name DESC;";
                         }elseif($searchoption == "Genre"){
                             #building query given the search option is "Genre"
-                            $query = "Genre";
+                            $query = "SELECT DISTINCT title, CONCAT(fname, ' ', lname) as author_name, Library.name as name, copies  FROM  Book";
+                            $query = $query." JOIN Author USING (author_id)";
+                            $query = $query." JOIN Stock USING (book_id)";
+                            $query = $query." JOIN Library USING (library_id)";
+                            $query = $query." JOIN Address USING (address_id)";
+                            $query = $query." JOIN Genre USING (genre_id)";
+                            $query = $query." WHERE Genre.name LIKE '%".$searchvalue."%'";
+                            $query = $query." ORDER BY name DESC;";
                         }else{
                             #sets query to "Error" if other cases aren't hit.
                             $query = "Error";
@@ -101,12 +114,25 @@
                                 }
                             }elseif($searchoption == "Author"){
                                 #displaying results given the searchoption was "Author"
-
+                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                    $counter++;
+                                    print "\n$row[title] \t\t $row[author_name] \t\t $row[name] \t\t $row[copies]";
+                                }
+                                if($counter == 0){
+                                    print "Unfortunately we do not have books by this author";
+                                }
                             }elseif($searchoption == "Genre"){
                                 #displaying results given the searchoption was "Genre"
-
+                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                    $counter++;
+                                    print "\n$row[title] \t\t $row[author_name] \t\t $row[name] \t\t $row[copies]";
+                                }
+                                if($counter == 0){
+                                    print "Unfortunately we do not have books in this genre";
+                                }
                             }else{
                                 #errors if previous search options aren't hit
+                                print "ERROR";
                             }
                         }elseif($formnumber == 2){
                             print "HERE IS DATA 2";
