@@ -3,8 +3,32 @@ body{
 	font-family: "arial";
 }
 
+/*https://www.w3schools.com/css/tryit.asp?filename=trycss_grid*/
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 0px 100px;
+}
+
+/*https://www.w3schools.com/css/tryit.asp?filename=trycss_grid*/
+.grid-item {
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  width: 200px;
+}
+
+.list-head{
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.list-bar{
+	max-width: 200px;
+}
+
 .content{
-	left: 20px;
+	right: 150px;
 	position: relative;
 	margin: auto;
 	max-width: 600px;

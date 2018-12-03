@@ -25,6 +25,7 @@
                 <?php
                     #instatiate variables
                     $formnumber = $_POST["form_number"];
+                    $searchvalue = $_POST["search_value"];
                     $query = "";
                     $searchoption = "";
 
@@ -32,7 +33,6 @@
                     if($formnumber == 1){
                         #get the type of search (Title, Author, Genre), and get then get the user input
                         $searchoption = $_POST["search_option"];
-                        $searchvalue = $_POST["search_value"];
 
                         if($searchoption == "Title"){
                             #building query given the search option is "Title"
@@ -67,7 +67,15 @@
                             $query = "Error";
                         }
                     }elseif($formnumber == 2){
-                        $query = "Location";
+                        #building query given the form number corresponds to search by Location
+                        $query = "SELECT DISTINCT title, CONCAT(fname, ' ', lname) as author_name, Library.name as name, copies  FROM  Book";
+                        $query = $query." JOIN Author USING (author_id)";
+                        $query = $query." JOIN Stock USING (book_id)";
+                        $query = $query." JOIN Library USING (library_id)";
+                        $query = $query." JOIN Address USING (address_id)";
+                        $query = $query." JOIN Genre USING (genre_id)";
+                        $query = $query." WHERE Library.name LIKE '%".$searchvalue."%'";
+                        $query = $query." ORDER BY name DESC;";
                     }elseif($formnumber == 3){
                         $searchoption = $_POST["search_option"];
                     }else{
@@ -98,52 +106,48 @@
                 <center>
                     <?php
                         #sets up for print layout
-                        print "<pre>";
                         print "\n";
                         $counter = 0;
 
                         if($formnumber == 1){
-                            if($searchoption == "Title"){
-                                #displaying results given the searchoption was "Title"
-                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-                                    $counter++;
-                                    print "\n$row[title] \t\t $row[author_name] \t\t $row[name] \t\t $row[copies]";
-                                }
-                                if($counter == 0){
+                            print "<div class='grid-container'>";
+                            print "\n<div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Author Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Copies Available</div>";
+                            
+                            print "</div><div class='list-bar'><hr></div><div class='grid-container'>";
+                            
+                            while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                $counter++;
+                                print "\n<div class='grid-item'>$row[title]</div> <div class='grid-item'>$row[author_name]</div> <div class='grid-item'>$row[name]</div> <div class='grid-item'>$row[copies]</div>";
+                            }
+                            print "</div>";
+                            if($counter == 0){
+                                if($searchoption == "Title"){
                                     print "Unfortunately we do not have this book in stock";
-                                }
-                            }elseif($searchoption == "Author"){
-                                #displaying results given the searchoption was "Author"
-                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-                                    $counter++;
-                                    print "\n$row[title] \t\t $row[author_name] \t\t $row[name] \t\t $row[copies]";
-                                }
-                                if($counter == 0){
+                                }elseif($searchoption == "Author"){
                                     print "Unfortunately we do not have books by this author";
-                                }
-                            }elseif($searchoption == "Genre"){
-                                #displaying results given the searchoption was "Genre"
-                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-                                    $counter++;
-                                    print "\n$row[title] \t\t $row[author_name] \t\t $row[name] \t\t $row[copies]";
-                                }
-                                if($counter == 0){
+                                }elseif($searchoption == "Genre"){
                                     print "Unfortunately we do not have books in this genre";
+                                }else{
+                                    #errors if previous search options aren't hit
+                                    print "ERROR";
                                 }
-                            }else{
-                                #errors if previous search options aren't hit
-                                print "ERROR";
                             }
                         }elseif($formnumber == 2){
-                            print "HERE IS DATA 2";
+                            print "<div class='grid-container'>";
+                            print "\n<div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Author Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Copies Available</div>";
+                            
+                            print "</div><div class='list-bar'><hr></div><div class='grid-container'>";
+                            
+                            while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                $counter++;
+                                print "\n<div class='grid-item'>$row[title]</div> <div class='grid-item'>$row[author_name]</div> <div class='grid-item'>$row[name]</div> <div class='grid-item'>$row[copies]</div>";
+                            }
+                            print "</div>";
                         }elseif($formnumber == 3){
                             print "HERE IS DATA 3";
                         }else{
                             print "HERE IS DATA 4";
                         }
-
-                        #ends print layout
-                        print "</pre>";
                     ?>
                 </center>
 
