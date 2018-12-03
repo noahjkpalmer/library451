@@ -16,6 +16,12 @@ body{
   padding: 0px 400px;
 }
 
+.grid-container3 {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 0px 50px;
+}
+
 /*https://www.w3schools.com/css/tryit.asp?filename=trycss_grid*/
 .grid-item {
   padding: 20px;

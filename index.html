@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<!-- 
+    Noah Palmer and Justin Robles
+    CIS 451 Databases
+    Index.html
 
+    Resources:
+    https://stackoverflow.com/questions/7727446/javascript-get-output-from-separate-php-script
+ -->
 <html>
     <head>
         <title>Library 451</title>
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body>
         <div>
@@ -28,7 +36,7 @@
                                 <option>Author</option>
                                 <option>Genre</option>
                             </select>
-                            <input class="inputbar" type="text" name="search_value" placeholder="Title/Author/Genre" required>
+                            <input class="inputbar" type="text" name="search_value" placeholder="Title/Author/Genre" id="f1" required>
                             <input type="hidden" name="form_number" value="1">
                             <button type="submit" value="submit" class="search" id="s1">Search</button>
                         </form>
@@ -46,7 +54,7 @@
                     <div id="form_2">
                         <form action="main.php" method="POST" class="form">
                             <button class="chooser" disabled>Location</button>
-                            <input  class="inputbar" type="text" name="search_value" placeholder="Location" required>
+                            <input  class="inputbar" type="text" name="search_value" placeholder="Location" id="f2" required>
                             <input type="hidden" name="form_number" value="2">
                             <button type="submit" value="submit" class="search" id="s2">Search</button>
                         </form>
@@ -67,7 +75,7 @@
                                 <option selected="selected">Late Fees</option>
                                 <option>Checked Out Books</option>
                             </select>
-                            <input class="inputbar" type="text" name="search_value" placeholder="Customer ID" required>
+                            <input class="inputbar" type="text" name="search_value" placeholder="Customer ID" id="f3" required>
                             <input type="hidden" name="form_number" value="3">
                             <button type="submit" value="submit" class="search" id="s3">Search</button>
                         </form>
@@ -85,7 +93,7 @@
                     <div id="form_4">
                         <form action="main.php" method="POST" class="form">
                             <button class="chooser" disabled>Employee ID</button>
-                            <input class="inputbar" type="text" name="search_value" placeholder="EmployeeID" required>
+                            <input class="inputbar" type="text" name="search_value" placeholder="EmployeeID" id="f4" required>
                             <input type="hidden" name="form_number" value="4">
                             <button type="submit" value="submit" class="search" id="s4">Search</button>
                         </form>
@@ -109,32 +117,27 @@
                 window.location.href = "index_html.txt";
             });
 
-        </script>
-
-        <!-- https://stackoverflow.com/questions/13539964/jquery-getjson-php-array-to-javascript -->
-       <!--  <script type="application/json"> //change this to "application/json"
-            $(document).ready(function(){
-                $.getJSON("loadData.php", function(data){
-                    if(data){
-                        console.log(data);
-                    }else{
-                        console.log("error");
-                    }
+            function strToArray(str){
+                str = str.substr(1, str.length - 2);
+                var arr = str.split(",");
+                let newarr = [];
+                for(let x in arr){
+                    newarr.push(arr[x].substr(1, arr[x].length - 2));
+                }
+                return newarr;
+            }
+            
+            let titles;
+            $.get("loadData.php", function(data){
+                titles = strToArray(data);
+                // console.log(strToArray(titles)[5]);
+                $("#f1").autocomplete({
+                    source: titles
                 });
             });
+            
+            
 
-            // var titles = 
-
-
-            // var authors
-
-            // var genres
-
-            // var locations
-
-            // var customerID
-
-            // var employeeID
-        </script> -->
+        </script>
     </footer>
 </html>

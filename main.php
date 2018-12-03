@@ -96,8 +96,11 @@
                         }
 
                     }else{
-                        $query = "SELECT DISTINCT *  FROM  Employee";
-                        $query = $query." JOIN Reservation USING (employee_id)";
+                        $query = "SELECT DISTINCT CONCAT(Customer.fname, ' ' , Customer.lname) as customer_name, CONCAT(Employee.fname, ' ' , Employee.lname) as employee_name, Library.name as library_name, title, rental_date FROM Employee";
+                        $query = $query." JOIN Reservation USING (employee_id, library_id)";
+                        $query = $query." JOIN Customer USING (customer_id)";
+                        $query = $query." JOIN Library USING (library_id)";
+                        $query = $query." JOIN Book USING (book_id)";
                         $query = $query." WHERE employee_id = ".$searchvalue.";";
                     }
                 ?>
@@ -198,7 +201,18 @@
                                 print "Error";
                             }
                         }else{
-                            print "HERE IS DATA 4";
+                            print "<div class='grid-container3'>\n<div class='grid-item list-head'>Customer Name</div> <div class='grid-item list-head'>Employee Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Checkout Date</div>";
+                            
+                            print "</div><div class='list-bar'><hr></div><div class='grid-container3'>";
+                            
+                            while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                $counter++;
+                                print "\n<div class='grid-item'>$row[customer_name]</div> <div class='grid-item'>$row[employee_name]</div> <div class='grid-item'>$row[library_name]</div> <div class='grid-item'>$row[title]</div> <div class='grid-item'>$row[rental_date]</div>";
+                            }
+                            print "</div>";
+                            if($counter == 0){
+                                print "We don't have you in our database!";
+                            }
                         }
                     ?>
                 </center>
