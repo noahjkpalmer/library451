@@ -117,24 +117,23 @@
                 window.location.href = "index_html.txt";
             });
 
-            function strToArray(str){
-                str = str.substr(1, str.length - 2);
-                var arr = str.split(",");
-                let newarr = [];
-                for(let x in arr){
-                    newarr.push(arr[x].substr(1, arr[x].length - 2));
-                }
-                return newarr;
-            }
+            // function strToArray(str){
+            //     str = str.substr(1, str.length - 2);
+            //     var arr = str.split(",");
+            //     let newarr = [];
+            //     for(let x in arr){
+            //         newarr.push(arr[x].substr(1, arr[x].length - 2));
+            //     }
+            //     return newarr;
+            // }
             
-            let titles;
-            $.get("loadData.php", function(data){
-                titles = strToArray(data);
-                // console.log(strToArray(titles)[5]);
-                $("#f1").autocomplete({
-                    source: titles
-                });
-            });
+            // let titles;
+            // $.get("loadData.php", function(data){
+            //     titles = strToArray(data);
+            //     $("#f1").autocomplete({
+            //         source: titles
+            //     });
+            // });
             
             
 
