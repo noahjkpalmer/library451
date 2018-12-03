@@ -9,13 +9,13 @@
 	    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 	    $counter = 0;
-	    $titles = array(
+	    $titles = array();
 		    while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
 		    	array_push($titles, $row[title]);
 		    }
-		);
-	    $obj=>titles = $titles
-	    return $obj;
+		
+	    // $obj=>titles = $titles
+	    return $titles;
 	}
 
 	echo json_encode(getData());
