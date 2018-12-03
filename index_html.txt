@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>Library 451</title>
@@ -107,6 +108,33 @@
             $(".viewsource").click(function(){
                 window.location.href = "index_html.txt";
             });
+
         </script>
+
+        <!-- https://stackoverflow.com/questions/13539964/jquery-getjson-php-array-to-javascript -->
+       <!--  <script type="application/json"> //change this to "application/json"
+            $(document).ready(function(){
+                $.getJSON("loadData.php", function(data){
+                    if(data){
+                        console.log(data);
+                    }else{
+                        console.log("error");
+                    }
+                });
+            });
+
+            // var titles = 
+
+
+            // var authors
+
+            // var genres
+
+            // var locations
+
+            // var customerID
+
+            // var employeeID
+        </script> -->
     </footer>
 </html>

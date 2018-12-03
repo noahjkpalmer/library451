@@ -87,7 +87,12 @@
                             $query = $query." WHERE customer_id = ".$searchvalue." AND return_date IS NULL";
                             $query = $query." AND '".$currDate."' > due_date;";
                         }elseif($searchoption == "Checked Out Books"){
-
+                            $query = "SELECT DISTINCT CONCAT(Customer.fname, ' ' , Customer.lname) as customer_name, Library.name as library_name, title, due_date FROM Customer";
+                            $query = $query." JOIN Reservation USING (customer_id)";
+                            $query = $query." JOIN Employee USING (employee_id, library_id)";
+                            $query = $query." JOIN Library USING (library_id)";
+                            $query = $query." JOIN Book USING (book_id)";
+                            $query = $query." WHERE customer_id = ".$searchvalue." AND return_date IS NULL;";
                         }
 
                     }else{
@@ -177,7 +182,18 @@
                                     print "We don't have you in our database!";
                                 }
                             }elseif($searchoption == "Checked Out Books"){
-                                print "Checked Out Books";
+                                print "<div class='grid-container'>\n<div class='grid-item list-head'>Customer Name</div> <div class='grid-item list-head'>Library Name</div> <div class='grid-item list-head'>Title</div> <div class='grid-item list-head'>Due Date</div>";
+                            
+                                print "</div><div class='list-bar'><hr></div><div class='grid-container'>";
+                                
+                                while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                                    $counter++;
+                                    print "\n<div class='grid-item'>$row[customer_name]</div> <div class='grid-item'>$row[library_name]</div> <div class='grid-item'>$row[title]</div> <div class='grid-item'>$row[due_date]</div>";
+                                }
+                                print "</div>";
+                                if($counter == 0){
+                                    print "We don't have you in our database!";
+                                }
                             }else{
                                 print "Error";
                             }
