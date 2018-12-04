@@ -140,17 +140,18 @@
 
             });
 
-            $("#t_a_g").click(function(data){
-                let selected = $('#t_a_g').find(":selected").text();
-                if(selected == "Title"){
+            $("#t_a_g").change(function(){
+                var sel = $("#t_a_g :selected").text();
+
+                if(sel == "Title"){
                     $("#f1").autocomplete({
                         source: titles
                     });
-                }else if(selected == "Author"){
+                }else if(sel == "Author"){
                     $("#f1").autocomplete({
                         source: authors
                     });
-                }else if(selected == "Genre"){
+                }else if(sel == "Genre"){
                     $("#f1").autocomplete({
                         source: genres
                     });
