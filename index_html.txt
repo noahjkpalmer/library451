@@ -32,9 +32,9 @@
                     <div id="form_1">
                         <form action="main.php" method="POST" class="form">
                             <select name="search_option" id="t_a_g" class="chooser">
-                                <option selected="selected">Title</option>
-                                <option>Author</option>
-                                <option>Genre</option>
+                                <option id="titleoption" selected="selected">Title</option>
+                                <option id="authoroption">Author</option>
+                                <option id="genreoption">Genre</option>
                             </select>
                             <input class="inputbar" type="text" name="search_value" placeholder="Title/Author/Genre" id="f1" required>
                             <input type="hidden" name="form_number" value="1">
@@ -116,26 +116,44 @@
             $(".viewsource").click(function(){
                 window.location.href = "index_html.txt";
             });
+            
+            var titles, authors, genres, locations;
+            $.get("loadData.php", function(json){
+                data = JSON.parse(json);
 
-            // function strToArray(str){
-            //     str = str.substr(1, str.length - 2);
-            //     var arr = str.split(",");
-            //     let newarr = [];
-            //     for(let x in arr){
-            //         newarr.push(arr[x].substr(1, arr[x].length - 2));
-            //     }
-            //     return newarr;
-            // }
-            
-            // let titles;
-            // $.get("loadData.php", function(data){
-            //     titles = strToArray(data);
-            //     $("#f1").autocomplete({
-            //         source: titles
-            //     });
-            // });
-            
-            
+                titles = data[0].titles;
+                authors = data[1].authors;
+                genres = data[2].genres;
+                locations = data[3].locations;
+
+                $("#f1").autocomplete({
+                    source: titles
+                });
+
+                $("#f2").autocomplete({
+                    source: locations
+                });
+
+            });
+
+            $("#t_a_g").click(function(data){
+                let selected = $('#t_a_g').find(":selected").text();
+                if(selected == "Title"){
+                    $("#f1").autocomplete({
+                        source: titles
+                    });
+                }else if(selected == "Author"){
+                    $("#f1").autocomplete({
+                        source: authors
+                    });
+                }else if(selected == "Genre"){
+                    $("#f1").autocomplete({
+                        source: genres
+                    });
+                }else{
+                    console.log("Error");
+                }
+            });
 
         </script>
     </footer>
