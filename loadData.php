@@ -1,5 +1,4 @@
 <?php
-
 	function getData(){
 		// Connect to Database
 		include('connectionData.txt');
@@ -41,7 +40,6 @@
 	    }
 	    $data4 = array('locations' => $locations);
 
-
 	    // Close Connection
 	    mysqli_free_result($result);
         mysqli_close($conn);
@@ -50,5 +48,4 @@
 	}
 
 	echo json_encode(getData());
-
 ?>

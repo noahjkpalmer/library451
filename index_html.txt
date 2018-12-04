@@ -2,10 +2,14 @@
 <!-- 
     Noah Palmer and Justin Robles
     CIS 451 Databases
-    Index.html
+    Index HTML
+
+    Description:
+    This is the primary page for the webpage where people can enter their data into the system and then be given the data as results.
 
     Resources:
     https://stackoverflow.com/questions/7727446/javascript-get-output-from-separate-php-script
+    https://stackoverflow.com/questions/10659097/jquery-get-selected-option-from-dropdown
  -->
 <html>
     <head>

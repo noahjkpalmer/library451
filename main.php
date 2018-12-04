@@ -1,8 +1,17 @@
+<!-- 
+    Noah Palmer and Justin Robles
+    CIS 451 Databases
+    Main PHP
+
+    Description:
+
+    Resources:
+
+ -->
 <?php
     include('connectionData.txt');
     $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
 ?>
-
 <html>
     <head>
         <title>Library 451</title>
@@ -79,14 +88,17 @@
                     }elseif($formnumber == 3){
                         $searchoption = $_POST["search_option"];
                         if($searchoption == "Late Fees"){
+                            // Getting the date in the correct format
                             $thisdate = getdate(date("U"));
                             $currDate = $thisdate[year]."-".$thisdate[mon]."-".$thisdate[mday];
 
+                            #building query given the search option is "Late Fees"
                             $query = "SELECT DISTINCT DATEDIFF('".$currDate."', due_date) as days_late, (DATEDIFF('".$currDate."', due_date)*.25) as fee_due  FROM  Customer";
                             $query = $query." JOIN Reservation USING (customer_id)";
                             $query = $query." WHERE customer_id = ".$searchvalue." AND return_date IS NULL";
                             $query = $query." AND '".$currDate."' > due_date;";
                         }elseif($searchoption == "Checked Out Books"){
+                            #building query given the search option is "Checked Out Books"
                             $query = "SELECT DISTINCT CONCAT(Customer.fname, ' ' , Customer.lname) as customer_name, Library.name as library_name, title, due_date FROM Customer";
                             $query = $query." JOIN Reservation USING (customer_id)";
                             $query = $query." JOIN Employee USING (employee_id, library_id)";
@@ -96,6 +108,7 @@
                         }
 
                     }else{
+                        #building query given the form number corresponds to search by Customer ID
                         $query = "SELECT DISTINCT CONCAT(Customer.fname, ' ' , Customer.lname) as customer_name, CONCAT(Employee.fname, ' ' , Employee.lname) as employee_name, Library.name as library_name, title, rental_date FROM Employee";
                         $query = $query." JOIN Reservation USING (employee_id, library_id)";
                         $query = $query." JOIN Customer USING (customer_id)";

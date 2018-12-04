@@ -1,9 +1,18 @@
+/*
+	Noah Palmer and Justin Robles
+	CIS 451 Databases
+	Main CSS
+
+	Description:
+
+	Resources:
+	https://www.w3schools.com/css/tryit.asp?filename=trycss_grid
+*/
 body{
 	background-color: lightyellow;
 	font-family: "arial";
 }
 
-/*https://www.w3schools.com/css/tryit.asp?filename=trycss_grid*/
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -22,7 +31,6 @@ body{
   padding: 0px 50px;
 }
 
-/*https://www.w3schools.com/css/tryit.asp?filename=trycss_grid*/
 .grid-item {
   padding: 20px;
   font-size: 20px;
