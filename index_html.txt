@@ -108,7 +108,9 @@
             <!-- Break Line -->
             <br><hr>
             <center>
-                <button class="viewsource">Contents of this Page</button>
+                <button class="viewsource" id="ld">Contents of LoadData</button>
+                <button class="viewsource" id="cp">Contents of this Page</button>
+                <button class="viewsource" id="ct">Download Contents of Tables</button>
             </center>
         </div>
     </body>
@@ -117,8 +119,14 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript">
-            $(".viewsource").click(function(){
+            $("#ld").click(function(){
+                window.location.href = "loadData_php.txt";
+            });
+            $("#cp").click(function(){
                 window.location.href = "index_html.txt";
+            });
+            $("#ct").click(function(){
+                window.location.href = "ContentsOfTables.xlsx";
             });
             
             var titles, authors, genres, locations;
